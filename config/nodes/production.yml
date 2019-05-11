@@ -1,0 +1,26 @@
+# STAGE: production
+
+# rbenvの設定
+rbenv:
+  global: 2.5.1
+  versions:
+    - 2.5.1
+  
+# rubyに初期で入れるgemの設定
+rbenv-default-gems:
+  default-gems:
+    - bundler
+  install: true
+
+# rbenvのインストールの際に使用するため削除禁止
+ruby-build:
+  install: true
+  build_envs: []
+
+nginx:
+  worker_num: auto
+  
+rails:
+  user: ec2-user
+  root: /home/ec2-user/rails_project #TODO: application root directory
+  host: example.com #TODO: your web server's address

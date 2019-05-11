@@ -1,0 +1,15 @@
+<%= node[:rails][:root] %>/shared/log/*.log
+<%= node[:rails][:root] %>/log/*.log {
+  daily
+  rotate 12
+  missingok
+  notifempty
+  copytruncate
+  compress
+  create 0666 webmaster webmaster
+
+  lastaction
+    pid=<%= node[:rails][:root] %>/shared/tmp/pids/unicorn.pid
+    test -s $pid && kill -USR1 "$(cat $pid)"
+  endscript
+}
