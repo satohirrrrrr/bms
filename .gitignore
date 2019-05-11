@@ -23,5 +23,13 @@
 /public/assets
 .byebug_history
 
+# Local configuration.
+/.env
+
+/.bundle
+/vendor/bundle
+/vendor/bin
+
+
 # Ignore master key for decrypting credentials and more.
 /config/master.key
