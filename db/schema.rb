@@ -10,7 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_11_074739) do
+ActiveRecord::Schema.define(version: 2019_05_12_062117) do
+
+  create_table "authors", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "last_name", limit: 20, null: false
+    t.string "first_name", limit: 20, null: false
+    t.string "last_name_kana", limit: 30
+    t.string "first_name_kana", limit: 30
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "book_authors", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "book_id", null: false
+    t.integer "author_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "book_oweners", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "user_id"
@@ -31,20 +47,22 @@ ActiveRecord::Schema.define(version: 2019_05_11_074739) do
 
   create_table "books", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
-    t.string "isbn_code", limit: 13
-    t.string "asin_code", limit: 10
-    t.string "author", limit: 20
-    t.string "publication_year_month", limit: 6
+    t.string "isbn_10", limit: 13
+    t.string "isbn_13", limit: 17
+    t.string "asin", limit: 10
+    t.string "publicated_on", limit: 8
     t.string "publisher"
     t.integer "page_size", limit: 2
     t.string "storage_location"
+    t.string "control_number"
     t.string "amazon_url"
     t.string "image_url"
     t.string "image_data"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["asin_code"], name: "index_books_on_asin_code", unique: true
-    t.index ["isbn_code"], name: "index_books_on_isbn_code", unique: true
+    t.index ["asin"], name: "index_books_on_asin", unique: true
+    t.index ["isbn_10"], name: "index_books_on_isbn_10", unique: true
+    t.index ["isbn_13"], name: "index_books_on_isbn_13", unique: true
     t.index ["name"], name: "index_books_on_name"
   end
 
