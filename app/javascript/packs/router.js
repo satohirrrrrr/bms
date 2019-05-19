@@ -1,11 +1,11 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Page1 from './books/page1.vue'
-import Page2 from './books/page2.vue'
+import Index from './pages/index.vue'
+import Book from './pages/book.vue'
 
 const routes = [
-  { path: '/', component: Page1 },
-  { path: '/page2', component: Page2 }
+  { path: '/', name: 'Index', component: Index },
+  { path: '/books/:id', name: 'Book', component: Book },
 ];
 Vue.use(VueRouter)
 export default new VueRouter({ routes })

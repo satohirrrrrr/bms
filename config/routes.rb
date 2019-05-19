@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
-  get 'books/index', action: :index, controller: 'books'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  root to: 'home#index'
+
+  namespace :api, format: 'json' do
+    resources :books, only: [:index, :show, :create, :update]
+  end
 end

@@ -15,8 +15,6 @@
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 
-console.log('Hello World from Webpacker')
-
 import App from '../app.vue'
 import Vue from 'vue'
 import Router from './router'
@@ -29,6 +27,4 @@ document.addEventListener('DOMContentLoaded', () => {
     render: h => h(App)
   }).$mount("#app")
   document.body.appendChild(app.$el)
-
-  console.log(app)
 })

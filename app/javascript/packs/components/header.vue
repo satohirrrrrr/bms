@@ -1,20 +1,36 @@
 <template>
-<div class="header">
-  <h1>{{ msg }}</h1>
-</div>
+  <div>
+    <ul id="dropdown" class="dropdown-content">
+      <li><router-link to="/">Top<i class="material-icons left">home</i></router-link></li>
+      <li><router-link to="/Borrow">Borrow<i class="material-icons left">pan_tool</i></router-link></li>
+      <li><router-link to="/request">Request<i class="material-icons left">live_help</i></router-link></li>
+      <li><router-link to="/register">Register<i class="material-icons left">library_add</i></router-link></li>
+    </ul>
+    <nav>
+      <div class="nav-wrapper">
+        <div class="brand-logo right">
+          <router-link to="/">Rutsubo<span style="font-size: 20px"> - Community Web Library -</span></router-link>
+        </div>
+        <ul class="left hide-on-med-and-down">
+          <li><router-link to="/">Top<i class="material-icons left">home</i></router-link></li>
+          <li><router-link to="/Borrow">Borrow<i class="material-icons left">pan_tool</i></router-link></li>
+          <li><router-link to="/request">Request<i class="material-icons left">live_help</i></router-link></li>
+          <li><router-link to="/register">Register<i class="material-icons left">library_add</i></router-link></li>
+        </ul>
+        <ul class="left hide-on-large-only">
+          <li>
+            <a class="dropdown-button" href="#!" data-activates="dropdown">
+              Menu<i class="material-icons left">arrow_drop_down</i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
 </template>
 
-<script>
-  export default {
-    name: 'global_header',
-    props: {
-      msg: String
-    }
+<style>
+  .brand-logo {
+    margin-right: 10px
   }
-</script>
-
-<style scoped>
-#header{
-  background: aliceblue;
-}
 </style>

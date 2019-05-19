@@ -41,10 +41,12 @@ gem 'seed-fu'
 gem 'sorcery'
 # javascript
 gem 'webpacker', github: 'rails/webpacker'
-# View
-gem 'slim-rails'
 # Manage Procfile-based applications
 gem 'foreman'
+# CSS
+gem 'jquery-rails'
+gem 'materialize-sass'
+gem 'material_icons'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
