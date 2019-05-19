@@ -1,19 +1,10 @@
 <template>
   <div>
+    <!-- 子コンポーネントにプロパティを渡す -->
+    <SearchForm :books="books" :loading="loading" :error="error" v-on:search="fetchBooks" />
+    <div class="divider"></div>
     <div class="loading" v-if="loading">読み込み中...</div>
     <div v-if="error" class="error">{{ error }}</div>
-    <!-- booksがロードされたら各Book名を表示する -->
-    <div class="row">
-      <div class="col s8">
-        <input v-model="searchKeywords" class="form-control" placeholder="search by any keywords...">
-      </div>
-      <div class="col s4">
-        <div v-on:click="fetchBooks" class="btn-floating waves-effect waves-light">
-          <i class="material-icons">search</i>
-        </div>
-      </div>
-    </div>
-    <div class="divider"></div>
     <ul class="collection">
       <div v-for="book in books" :key="book.id">
         <li class="collection-item"><router-link v-bind:to="{ name: 'Book', params: { id: book.id }}">{{ book.name }}</router-link></li>
@@ -23,15 +14,16 @@
 </template>
 
 <script>
+  import SearchForm from './search_form'
   import axios from 'axios'
   export default {
     name: 'book_list',
+    components: { SearchForm },
     data: function() {
       return {
         loading: false,
         books: [], // 初期値の空配列
         error: null,
-        searchKeywords: ""
       }
     },
     // 初期化時にデータを取得
@@ -43,11 +35,11 @@
       '$route': 'fetchBooks'
     },
     methods: {
-      fetchBooks: function() {
+      fetchBooks: function(condition) {
         console.log("fetchBooks")
         this.loading = true
         axios.get('/api/books', {
-          params: { q: this.searchKeywords }
+          params: { q: condition }
         }).then((response) => {
           this.books = []
           for(var i = 0; i < response.data.books.length; i++) {
