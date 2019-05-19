@@ -3,9 +3,9 @@
 </template>
 
 <script>
-import BookInfo from '../components/book_info'
+import BookInfo from '../components/book/info'
 export default {
-  name: 'book',
+  name: 'book_info',
   components: { BookInfo }
 }
 </script>

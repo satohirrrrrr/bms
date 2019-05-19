@@ -3,9 +3,9 @@
 </template>
 
 <script>
-import BookList from '../components/book_list'
+import BookList from '../components/top/book_list'
 export default {
-  name: 'index',
+  name: 'top',
   components: { BookList }
 }
 </script>

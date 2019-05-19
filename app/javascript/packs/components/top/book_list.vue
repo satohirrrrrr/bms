@@ -7,7 +7,7 @@
     <div v-if="error" class="error">{{ error }}</div>
     <ul class="collection">
       <div v-for="book in books" :key="book.id">
-        <li class="collection-item"><router-link v-bind:to="{ name: 'Book', params: { id: book.id }}">{{ book.name }}</router-link></li>
+        <li class="collection-item"><router-link v-bind:to="{ name: 'BookInfo', params: { id: book.id }}">{{ book.name }}</router-link></li>
       </div>
     </ul>
   </div>
