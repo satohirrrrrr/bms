@@ -1,5 +1,5 @@
 <template>
-  <BookInfo/>
+  <book-info/>
 </template>
 
 <script>

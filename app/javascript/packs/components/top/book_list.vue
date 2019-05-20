@@ -1,12 +1,10 @@
 <template>
   <div>
-    <!-- 子コンポーネントにプロパティを渡す -->
-    <SearchForm :books="books" :loading="loading" :error="error" v-on:search="fetchBooks" />
     <div class="divider"></div>
-    <div class="loading" v-if="loading">読み込み中...</div>
-    <div v-if="error" class="error">{{ error }}</div>
+    <div class="loading" v-if="sharedState.loading">読み込み中...</div>
+    <div v-if="sharedState.error" class="error">{{ sharedState.error }}</div>
     <ul class="collection">
-      <div v-for="book in books" :key="book.id">
+      <div v-for="book in sharedState.books" :key="book.id">
         <li class="collection-item"><router-link v-bind:to="{ name: 'BookInfo', params: { id: book.id }}">{{ book.name }}</router-link></li>
       </div>
     </ul>
@@ -14,16 +12,12 @@
 </template>
 
 <script>
-  import SearchForm from './search_form'
-  import axios from 'axios'
+  import store from './store'
   export default {
     name: 'book_list',
-    components: { SearchForm },
     data: function() {
       return {
-        loading: false,
-        books: [], // 初期値の空配列
-        error: null,
+        sharedState: store.state
       }
     },
     // 初期化時にデータを取得
@@ -35,21 +29,9 @@
       '$route': 'fetchBooks'
     },
     methods: {
-      fetchBooks: function(condition) {
-        console.log("fetchBooks")
-        this.loading = true
-        axios.get('/api/books', {
-          params: { q: condition }
-        }).then((response) => {
-          this.books = []
-          for(var i = 0; i < response.data.books.length; i++) {
-            this.books.push(response.data.books[i])
-          }
-          this.loading = false
-        }, (error) => {
-          alert(error)
-        })
-      },
+      fetchBooks: function () {
+        store.fetchBooks()
+      }
     }
   }
 </script>
