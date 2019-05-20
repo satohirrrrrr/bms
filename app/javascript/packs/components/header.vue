@@ -13,7 +13,7 @@
         </div>
         <ul class="left hide-on-med-and-down">
           <li><router-link to="/">Top<i class="material-icons left">home</i></router-link></li>
-          <li><router-link to="/Borrow">Borrow<i class="material-icons left">pan_tool</i></router-link></li>
+          <li><router-link to="/borrow">Borrow<i class="material-icons left">pan_tool</i></router-link></li>
           <li><router-link to="/request">Request<i class="material-icons left">live_help</i></router-link></li>
           <li><router-link to="/register">Register<i class="material-icons left">library_add</i></router-link></li>
         </ul>
