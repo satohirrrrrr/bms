@@ -1,11 +1,12 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Top from './pages/top.vue'
-import BookInfo from './pages/book_info.vue'
+import TopPage from './pages/top.vue'
+import BookPage from './pages/book.vue'
 
 const routes = [
-  { path: '/', name: 'Top', component: Top },
-  { path: '/books/:id', name: 'BookInfo', component: BookInfo },
+  { path: '/', name: 'Top', component: TopPage },
+  { path: '/books/new', name: 'BookForm', component: BookPage }, // /books/:idを先に書くと、{ id: 'register' }にマッチしてしまう
+  { path: '/books/:id', name: 'BookRef', component: BookPage },
 ];
 Vue.use(VueRouter)
 export default new VueRouter({ routes })

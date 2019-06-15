@@ -31,6 +31,10 @@ class Api::BooksController < ApplicationController
     end
   end
 
+  # GET /books/new
+  def new
+  end
+
   private 
   # Never trust parameters form the scary internet, only allow the white lit through.
   def book_params

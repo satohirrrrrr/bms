@@ -11,7 +11,7 @@ var store = {
     this.state.loading = flag
   },
 
-  function (flag) {
+  setError (flag) {
     this.state.error = flag
   },
 

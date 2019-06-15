@@ -2,7 +2,7 @@
   <form>
     <div class="row">
       <div class="col s5">
-        <input v-model="searchCondition" v-on:keyup="fetchBooks(searchCondition)" class="form-control" placeholder="search by any keywords...">
+        <input v-model="searchCondition" v-on:change="fetchBooks(searchCondition)" class="form-control" placeholder="search by any keywords...">
       </div>
       <div class="col s2">
         <button type="submit" v-on:click="fetchBooks(searchCondition)" class="btn-floating waves-effect waves-light">
