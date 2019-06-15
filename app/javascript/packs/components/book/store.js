@@ -37,7 +37,7 @@ var store = {
   },
 
   /** 
-   * params = {title: 'タイトル', author: '著者', publisher: '出版社', isbn: '1234567890123'}
+   * params = { title: 'タイトル', author: '著者', publisher: '出版社', isbn: '1234567890123' }
    */
   callGoogleBookApi (params) {
     this.setLoading(true)

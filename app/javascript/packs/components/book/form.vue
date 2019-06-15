@@ -10,7 +10,7 @@
     </div>
     <div class="row">
       <div class="col s9">
-        <input id="name" name="book.name" value="" placeholder="name">
+        <input id="name" name="book.name" v-model="sharedState.book.name" placeholder="name">
       </div>
     </div>
     <!-- isbn10 -->
@@ -135,10 +135,16 @@
         sharedState: store.state
       }
     },
+    created: function() {
+      this.fetchBookInfo()
+    },
     watch: {
       '$route': 'registerBook'
     },
     methods: {
+      fetchBookInfo: function () {
+        store.fetchBookInfo(this.$route.params.id)
+      },
       registerBook: function () {
         store.registerBook()
       },

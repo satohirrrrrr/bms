@@ -4,7 +4,9 @@ var store = {
   state: {
     loading: false,
     error: false,
-    books: []
+    condition: '',
+    books: [],
+    mode: ''
   },
 
   setLoading (flag) {
@@ -15,6 +17,10 @@ var store = {
     this.state.error = flag
   },
 
+  setCondition (condition) {
+    this.state.condition = condition
+  },
+
   pushBook (book) {
     this.state.books.push(book)
   },
@@ -23,10 +29,33 @@ var store = {
     this.state.books = []
   },
 
+  setMode (mode) {
+    this.state.mode = mode
+  },
+
+  isHeadlineMode () {
+    return this.state.mode === 'headline'
+  },
+
+  isListMode () {
+    return this.state.mode === 'list'
+  },
+
+  reflectModeClass () {
+    if (this.isHeadlineMode()) {
+      $("#modeBtnHeadline").addClass("icon-active")
+      $("#modeBtnList").removeClass("icon-active")
+    }
+    if (this.isListMode()) {
+      $("#modeBtnList").addClass("icon-active")
+      $("#modeBtnHeadline").removeClass("icon-active")
+    }
+  },
+
   fetchBooks (condition) {
     this.setLoading(true)
     axios.get('/api/books', {
-      params: { q: condition }
+      params: { q: this.state.condition }
     }).then((response) => {
       this.clearBooks()
       for(var i = 0; i < response.data.books.length; i++) {
@@ -37,7 +66,6 @@ var store = {
       alert(error)
     })
   },
-
 }
 
 export default store
