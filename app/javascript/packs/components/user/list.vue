@@ -7,7 +7,7 @@
     </router-link>
     <div class="row">
       <div class="col s3">
-        <img v-bind:src="sharedState.book.image_url">
+        <img v-bind:src="sharedState.thumbnail">
       </div>
       <div class="col s9">
         <div class="row"><span class="float-text title">{{ sharedState.book.name }}</span></div>

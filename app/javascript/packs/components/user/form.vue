@@ -13,17 +13,6 @@
         <input id="name" name="book.name" v-model="sharedState.book.name" placeholder="name">
       </div>
     </div>
-    <!-- subtitle -->
-    <div class="row">
-      <div class="col s3">
-        <span>subtitle</span>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col s9">
-        <input id="subtitle" name="book.subtitle" v-model="sharedState.book.subtitle" placeholder="subtitle">
-      </div>
-    </div>
     <!-- isbn10 -->
     <div class="row">
       <div class="col s3">

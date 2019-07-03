@@ -5,19 +5,32 @@
     <div v-if="sharedState.error" class="error">{{ sharedState.error }}</div>
     <ul v-if="isHeadlineMode()" class="collection">
       <div v-for="book in sharedState.books" :key="book.id">
-        <li class="collection-item"><router-link v-bind:to="{ name: 'BookRef', params: { id: book.id } }">{{ book.name }}</router-link></li>
+        <li class="collection-item">
+          <span v-if="book.is_sync_gba">sync </span>
+          <router-link v-bind:to="{ name: 'BookRef', params: { id: book.id } }">{{ book.name }}</router-link></li>
       </div>
     </ul>
     <div v-if="isListMode()">
       <div v-for="book in sharedState.books" :key="book.id">
         <div class="row">
-          <div class="col s4">
-            <img :src="require('no_image.png')">
+          <div class="col s3">
+            <div v-if="hasImage(book)">
+              <router-link v-bind:to="{ name: 'BookRef', params: { id: book.id } }">
+                <img :src="book.image_url">
+              </router-link>
+            </div>
+            <div v-else>
+              <router-link v-bind:to="{ name: 'BookRef', params: { id: book.id } }">
+                <img :src="require('no_image.png')">
+              </router-link>
+            </div>
           </div>
-          <div class="col s8">
+          <div class="col s9">
             <router-link v-bind:to="{ name: 'BookRef', params: { id: book.id } }">
               <span class="float-text title">{{ book.name }}</span>
+              <span class="float-text subtitle">{{ book.subtitle }}</span>
             </router-link>
+              <br><br><span class="float-text description">{{ book.description }}</span>
           </div>
         </div>
       </div>
@@ -43,14 +56,17 @@
       '$route': 'fetchBooks'
     },
     methods: {
-      fetchBooks: function () {
+      fetchBooks: function() {
         store.fetchBooks()
       },
-      isHeadlineMode: function () {
+      isHeadlineMode: function() {
         return store.isHeadlineMode()
       },
-      isListMode: function () {
+      isListMode: function() {
         return store.isListMode()
+      },
+      hasImage: function(book) {
+        return book.image_url != null
       }
     }
   }
@@ -59,5 +75,8 @@
 <style>
   .title {
     font-size: 25px !important;
+  }
+  .subtitle {
+    font-size: 15px !important;
   }
 </style>

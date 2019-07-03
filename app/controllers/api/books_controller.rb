@@ -1,4 +1,5 @@
 class Api::BooksController < ApplicationController
+  protect_from_forgery :except => [:sync]
 
   # GET /books
   def index
@@ -33,6 +34,14 @@ class Api::BooksController < ApplicationController
 
   # GET /books/new
   def new
+  end
+
+  # PATCH/PUT /books/sync
+  def sync
+    @books = Book.all if params[:q].blank?
+    @books = Book.where('name like ?', "%#{params[:q]}%") if params[:q].present?
+    Book::GbaSyncronizer.execute(@books.where(is_sync_gba: false))
+    render 'index'
   end
 
   private 

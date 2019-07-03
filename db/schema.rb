@@ -47,20 +47,19 @@ ActiveRecord::Schema.define(version: 2019_05_12_062117) do
 
   create_table "books", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
+    t.string "subtitle"
+    t.text "description"
     t.string "isbn_10", limit: 13
     t.string "isbn_13", limit: 17
-    t.string "asin", limit: 10
-    t.string "publicated_on", limit: 8
+    t.string "publicated_on", limit: 10
     t.string "publisher"
     t.integer "page_size", limit: 2
     t.string "storage_location"
     t.string "control_number"
-    t.string "amazon_url"
     t.string "image_url"
-    t.string "image_data"
+    t.boolean "is_sync_gba", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["asin"], name: "index_books_on_asin", unique: true
     t.index ["isbn_10"], name: "index_books_on_isbn_10", unique: true
     t.index ["isbn_13"], name: "index_books_on_isbn_13", unique: true
     t.index ["name"], name: "index_books_on_name"
