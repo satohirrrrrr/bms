@@ -41,7 +41,7 @@
 <script>
   import store from './store'
   export default {
-    name: 'book_list',
+    name: 'list',
     data: function() {
       return {
         sharedState: store.state
