@@ -13,7 +13,7 @@
 import BookInfo from '../components/book/info'
 import BookForm from '../components/book/form'
 export default {
-  name: 'book',
+  name: 'book_list',
   components: { BookInfo, BookForm },
   methods: {
     isPathBookRef: function () {
