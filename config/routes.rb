@@ -5,5 +5,6 @@ Rails.application.routes.draw do
     get '/books/new', action: :new, controller: 'books'
     put '/books/sync', action: :sync, controller: 'books'
     resources :books, only: [:index, :show, :create, :update]
+    resources :users, only: [:index, :show, :create, :update]
   end
 end
