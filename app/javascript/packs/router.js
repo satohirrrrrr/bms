@@ -12,8 +12,8 @@ const routes = [
   { path: '/books/new',      name: 'BookForm', component: BookPage },
   { path: '/books/:id',      name: 'BookRef',  component: BookPage },
   { path: '/users',          name: 'UserList', component: UserListPage },
-  { path: '/users/edit/:id', name: 'UserForm', component: UserPage },
-  { path: '/users/new',      name: 'UserForm', component: UserPage },
+  // { path: '/users/edit/:id', name: 'UserForm', component: UserPage },
+  // { path: '/users/new',      name: 'UserForm', component: UserPage },
 ];
 Vue.use(VueRouter)
 export default new VueRouter({ routes })

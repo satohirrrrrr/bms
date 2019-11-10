@@ -1,7 +1,5 @@
 <template>
   <div>
-    <div class="divider"></div>
-    <div class="loading" v-if="sharedState.loading">読み込み中...</div>
     <div v-if="sharedState.error" class="error">{{ sharedState.error }}</div>
     <ul v-if="isHeadlineMode()" class="collection">
       <div v-for="book in sharedState.books" :key="book.id">

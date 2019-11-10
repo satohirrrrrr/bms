@@ -2,6 +2,8 @@
   <div id="app">
     <navbar />
     <div class="section container">
+      <div class="divider"></div>
+      <div class="loading" v-if="sharedState.loading">読み込み中...</div>
       <router-view />
     </div>
   </div>
@@ -9,10 +11,16 @@
 
 <script>
   import Header from './packs/components/header'
+  import store from 'packs/store'
   export default {
     components: {
       'navbar': Header,
-    }
+    },
+    data: function() {
+      return {
+        sharedState: store.state
+      }
+    },
   }
 </script>
 

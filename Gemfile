@@ -59,6 +59,8 @@ group :development, :test do
   gem 'pry-rails'
   # rails linter
   gem 'rubocop', '0.62.0', require: false
+  # dammy data
+  gem 'faker'
 end
 
 group :development do
