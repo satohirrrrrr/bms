@@ -7,8 +7,6 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-ActiveRecord::Base.connection.execute('TRUNCATE TABLE users')
-ActiveRecord::Base.connection.execute('TRUNCATE TABLE user_profiles')
 ActiveRecord::Base.connection.execute('TRUNCATE TABLE roles')
 ActiveRecord::Base.connection.execute('TRUNCATE TABLE user_roles')
 ActiveRecord::Base.connection.execute('TRUNCATE TABLE books')

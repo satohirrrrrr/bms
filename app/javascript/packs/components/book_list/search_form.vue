@@ -5,12 +5,12 @@
         <input v-model="sharedState.condition" v-on:change="fetchBooks" class="form-control" placeholder="search by any keywords...">
       </div>
       <div class="col s1">
-        <button type="submit" v-on:click="fetchBooks" class="btn-floating waves-effect waves-light">
+        <button v-on:click="fetchBooks" class="btn-floating waves-effect waves-light">
           <i class="material-icons">search</i>
         </button>
       </div>
       <div class="col s1">
-        <button type="submit" v-on:click="syncGoogle" class="btn waves-effect waves-light sync-btn">
+        <button v-on:click="syncGoogle" class="btn waves-effect waves-light sync-btn">
           <i class="material-icons">sync</i><span class="vertical-center">Google</span>
         </button>
       </div>
