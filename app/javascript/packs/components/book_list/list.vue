@@ -1,6 +1,5 @@
 <template>
   <div>
-    <div v-if="sharedState.error" class="error">{{ sharedState.error }}</div>
     <ul v-if="isHeadlineMode()" class="collection">
       <div v-for="book in sharedState.books" :key="book.id">
         <li class="collection-item">

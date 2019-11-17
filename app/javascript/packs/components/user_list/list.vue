@@ -1,6 +1,5 @@
 <template>
   <div>
-    <div class="divider"></div>
     <table id="striped">
       <thead>
         <tr>
@@ -11,7 +10,11 @@
           <th>last_login_at</th>
           <th>last_logout_at</th>
           <th>last_activity_at</th>
-          <th></th>
+          <th>
+            <button data-target="userModal" class="btn-floating btn waves-effect waves-light blue modal-trigger" v-on:click="showUserModal()">
+              <i class="material-icons small">person_add</i>
+            </button>
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -24,22 +27,22 @@
           <td class="float-text">{{ user.last_logout_at }}</td>
           <td class="float-text">{{ user.last_activity_at }}</td>
           <td>
-            <i data-target="editUserModal" class="material-icons mode-btn small icon-gray modal-trigger" v-on:click="fetchUser(user.id)">edit</i>
+            <i data-target="userModal" class="material-icons mode-btn small icon-gray modal-trigger" v-on:click="showUserModal(user.id)">edit</i>
             <i class="material-icons mode-btn small icon-gray" v-on:click="deleteUser(user.id)">delete_forever</i>
           </td>
         </tr>
       </tbody>
     </table>
-    <edit-user-modal @close="closeEditUserModal"/>
+    <user-modal @close="closeUserModal"/>
   </div>
 </template>
 
 <script>
   import store from './store'
-  import EditUserModal from './edit_user_modal'
+  import UserModal from './user_modal'
   export default {
     name: 'list',
-    components: { EditUserModal },
+    components: { UserModal },
     data: function() {
       return {
         sharedState: store.state
@@ -57,25 +60,22 @@
       fetchUsers: function() {
         store.fetchUsers()
       },
-      fetchUser: function(userId) {
-        store.fetchUser(userId)
+      showUserModal: function(userId) {
+        store.showUserModal(userId)
       },
-      closeEditUserModal: function() {
-        store.closeEditUserModal()
+      closeUserModal: function() {
+        store.closeUserModal()
       },
       deleteUser: function(userId) {
         if(window.confirm('削除しますか？')) {
           store.deleteUser(userId)
         }
       },
-    }
+    },
   }
 </script>
 
 <style>
-  i.icon-red {
-    color: red;
-  }
   i.icon-gray {
     color: gray;
   }

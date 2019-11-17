@@ -1,5 +1,5 @@
 class Api::UsersController < ApplicationController
-  protect_from_forgery :except => [:delete]
+  protect_from_forgery :except => %i[delete create]
   before_action :set_user, only: %i[delete show update]
 
   # GET /users
@@ -12,6 +12,19 @@ class Api::UsersController < ApplicationController
     @user.user_profile.delete
     @user.user_profile.save!
     @user
+  end
+
+  # POST /users/
+  def create
+    @user = User.new(update_for_user_params)
+    @user_profile = UserProfile.new(update_for_user_profile_params.merge({user_id: @user.id})) if @user.save
+    respond_to do |format|
+      if @user_profile.save!
+        render :json => {} and return
+      else
+        format.json { render json: @user, status: :unprocessable_entity } and return
+      end
+    end
   end
 
   # GET /users/:id

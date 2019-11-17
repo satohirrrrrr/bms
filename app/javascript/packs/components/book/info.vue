@@ -1,7 +1,5 @@
 <template>
   <div>
-    <div class="loading" v-if="sharedState.loading">読み込み中...</div>
-    <div v-if="sharedState.error" class="error">{{ sharedState.error }}</div>
     <router-link class="btn-floating btn-large waves-effect waves-light red right" v-bind:to="{ name: 'BookForm', params: { id: sharedState.book.id } }">
       <i class="material-icons left">edit</i>
     </router-link>

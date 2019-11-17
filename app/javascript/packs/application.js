@@ -18,7 +18,6 @@
 import App from '../app.vue'
 import Vue from 'vue'
 import Router from './router'
-import store from './store'
 
 document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({
