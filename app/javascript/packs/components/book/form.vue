@@ -1,7 +1,5 @@
 <template>
   <div>
-    <div class="loading" v-if="sharedState.loading">読み込み中...</div>
-    <div v-if="sharedState.error" class="error">{{ sharedState.error }}</div>
     <!-- name -->
     <div class="row">
       <div class="col s3">

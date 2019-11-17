@@ -1,19 +1,10 @@
 import axios from 'axios'
+import commonStore from '../../common_store'
 
 let store = {
   state: {
-    loading: false,
-    error: false,
     book: {},
     thumbnail: ''
-  },
-
-  setLoading (flag) {
-    this.state.loading = flag
-  },
-
-  setError (flag) {
-    this.state.error = flag
   },
 
   setBook (book) {
@@ -25,12 +16,12 @@ let store = {
   },
 
   fetchBookInfo (id) {
-    this.setLoading(true)
+    commonStore.setLoading(true)
     this.setThumbnail('')
     axios.get(`/api/books/${id}`).then((response) => {
       this.setBook(response.data.book)
       // this.callGoogleBookApi(this.createApiParams(response.data.book))
-      this.setLoading(false)
+      commonStore.setLoading(false)
     }, (error) => {
       alert(error)
     })
@@ -40,7 +31,7 @@ let store = {
    * params = { title: 'タイトル', author: '著者', publisher: '出版社', isbn: '1234567890123' }
    */
   callGoogleBookApi (params) {
-    this.setLoading(true)
+    commonStore.setLoading(true)
     let q = []
     params.title     ? q.push(`intitle:${params.title}`)         : null
     params.author    ? q.push(`inauthor:${params.author}`)       : null
@@ -52,6 +43,7 @@ let store = {
       } else {
         this.setThumbnail(require('no_image.png'))
       }
+      commonStore.setLoading(false)
     }, (error) => {
       alert(error)
     })

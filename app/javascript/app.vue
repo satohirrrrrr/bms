@@ -2,7 +2,7 @@
   <div id="app">
     <navbar />
     <div class="section container">
-      <div class="divider"></div>
+      <div v-if="sharedState.error" class="error">{{ sharedState.error }}</div>
       <div class="loading" v-if="sharedState.loading">読み込み中...</div>
       <router-view />
     </div>
@@ -11,7 +11,7 @@
 
 <script>
   import Header from './packs/components/header'
-  import store from 'packs/store'
+  import store from 'packs/common_store'
   export default {
     components: {
       'navbar': Header,

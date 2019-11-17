@@ -1,20 +1,11 @@
 import axios from 'axios';
+import commonStore from '../../common_store'
 
 let store = {
   state: {
-    loading: false,
-    error: false,
     condition: '',
     books: [],
     mode: ''
-  },
-
-  setLoading(flag) {
-    this.state.loading = flag
-  },
-
-  setError(flag) {
-    this.state.error = flag
   },
 
   setCondition(condition) {
@@ -53,7 +44,7 @@ let store = {
   },
 
   fetchBooks() {
-    this.setLoading(true)
+    commonStore.setLoading(true)
     axios.get('/api/books', {
       params: { q: this.state.condition }
     }).then((response) => {
@@ -63,23 +54,23 @@ let store = {
         response.data.books[i].description = this.omitStringLimitLength(description, 200)
         this.pushBook(response.data.books[i])
       }
-      this.setLoading(false)
+      commonStore.setLoading(false)
     }, (error) => {
       alert(error)
     })
   },
 
   syncGoogle() {
-    this.setLoading(true)
+    commonStore.setLoading(true)
     axios.put('/api/books/sync', {
       q: this.state.condition
     }).then((response) => {
       alert("Google Books Apiとの同期が完了しました")
       this.fetchBooks()
+      commonStore.setLoading(false)
     }, (error) => {
       alert("Google Books Apiとの同期に失敗しました")
     })
-    this.setLoading(false)
   },
 
   omitStringLimitLength(str, limit) {
