@@ -8,7 +8,7 @@
     <nav>
       <div class="nav-wrapper">
         <div class="brand-logo right">
-          <router-link to="/">Rutsubo<span style="font-size: 20px"> - Community Web Library -</span></router-link>
+          <router-link to="/">BMS<span style="font-size: 20px"> - Book Management System -</span></router-link>
         </div>
         <ul class="left hide-on-med-and-down">
           <li><router-link to="/">Top<i class="material-icons left">home</i></router-link></li>
